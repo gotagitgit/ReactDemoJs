@@ -4,7 +4,7 @@ import PropDrillingTodo from './prop-drilling/PropDrillingTodo';
 import ReduxTodo from './redux/ReduxTodo';
 import ReduxToolkitDemo from './redux-toolkit/ReduxToolkitDemo';
 
-function ReduxDemo() {
+function ReduxDemo(): JSX.Element {
   return (
     <>
       <div className="demo-section">

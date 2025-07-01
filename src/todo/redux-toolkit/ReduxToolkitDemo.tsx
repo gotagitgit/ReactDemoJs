@@ -3,7 +3,7 @@ import RTKTodoInput from './RTKTodoInput';
 import RTKTodoList from './RTKTodoList';
 import RTKTodoStats from './RTKTodoStats';
 
-function ReduxToolkitDemo() {
+function ReduxToolkitDemo(): JSX.Element {
   return (
     <div className="todo-app">
       <div className="multi-component-demo">

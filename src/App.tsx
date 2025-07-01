@@ -5,8 +5,10 @@ import CounterDemo from './counter/CounterDemo';
 import ReduxDemo from './todo/ReduxDemo';
 import './App.css';
 
-function App() {
-  const [activeTab, setActiveTab] = useState('counter');
+type TabType = 'counter' | 'redux';
+
+function App(): JSX.Element {
+  const [activeTab, setActiveTab] = useState<TabType>('counter');
 
   return (
     <Provider store={store}>

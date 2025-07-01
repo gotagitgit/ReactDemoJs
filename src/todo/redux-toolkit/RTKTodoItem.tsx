@@ -1,15 +1,20 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../hooks';
 import { toggleTodo, deleteTodo } from './todoSlice';
+import { Todo } from '../../types';
 
-function RTKTodoItem({ todo }) {
-  const dispatch = useDispatch();
+interface RTKTodoItemProps {
+  todo: Todo;
+}
 
-  const handleToggle = () => {
+function RTKTodoItem({ todo }: RTKTodoItemProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const handleToggle = (): void => {
     dispatch(toggleTodo(todo.id));
   };
 
-  const handleDelete = () => {
+  const handleDelete = (): void => {
     dispatch(deleteTodo(todo.id));
   };
 

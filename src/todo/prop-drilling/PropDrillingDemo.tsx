@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
+import { Todo } from '../../types';
 
-// Level 1: Top component with state
-function PropDrillingDemo() {
-  const [todos, setTodos] = useState([
+interface TodoProps {
+  todos: Todo[];
+  onToggle: (id: number) => void;
+  onIncrement: () => void;
+}
+
+function PropDrillingDemo(): JSX.Element {
+  const [todos, setTodos] = useState<Todo[]>([
     { id: 1, text: 'Learn Prop Drilling', completed: false },
     { id: 2, text: 'See the Problem', completed: false }
   ]);
-  const [clickCount, setClickCount] = useState(0);
+  const [clickCount, setClickCount] = useState<number>(0);
 
-  const toggleTodo = (id) => {
+  const toggleTodo = (id: number): void => {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
   };
 
-  const incrementClick = () => {
+  const incrementClick = (): void => {
     setClickCount(clickCount + 1);
   };
 
@@ -31,8 +37,7 @@ function PropDrillingDemo() {
   );
 }
 
-// Level 2: Container that doesn't use the props but passes them down
-function TodoContainer({ todos, onToggle, onIncrement }) {
+function TodoContainer({ todos, onToggle, onIncrement }: TodoProps): JSX.Element {
   return (
     <div className="component-box">
       <h4>Level 2: Container (passes props)</h4>
@@ -41,8 +46,7 @@ function TodoContainer({ todos, onToggle, onIncrement }) {
   );
 }
 
-// Level 3: Section that doesn't use the props but passes them down
-function TodoSection({ todos, onToggle, onIncrement }) {
+function TodoSection({ todos, onToggle, onIncrement }: TodoProps): JSX.Element {
   return (
     <div className="component-box">
       <h4>Level 3: Section (passes props)</h4>
@@ -51,8 +55,7 @@ function TodoSection({ todos, onToggle, onIncrement }) {
   );
 }
 
-// Level 4: Wrapper that doesn't use the props but passes them down
-function TodoWrapper({ todos, onToggle, onIncrement }) {
+function TodoWrapper({ todos, onToggle, onIncrement }: TodoProps): JSX.Element {
   return (
     <div className="component-box">
       <h4>Level 4: Wrapper (passes props)</h4>
@@ -61,8 +64,7 @@ function TodoWrapper({ todos, onToggle, onIncrement }) {
   );
 }
 
-// Level 5: Finally uses the props!
-function TodoDisplay({ todos, onToggle, onIncrement }) {
+function TodoDisplay({ todos, onToggle, onIncrement }: TodoProps): JSX.Element {
   return (
     <div className="component-box">
       <h4>Level 5: Display (finally uses props!)</h4>

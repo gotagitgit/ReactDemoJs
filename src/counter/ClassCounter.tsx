@@ -1,7 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, ChangeEvent } from 'react';
 
-class ClassCounter extends Component {
-  constructor(props) {
+interface ClassCounterState {
+  count: number;
+  name: string;
+}
+
+class ClassCounter extends Component<{}, ClassCounterState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       count: 0,
@@ -9,31 +14,31 @@ class ClassCounter extends Component {
     };
   }
 
-  increment = () => {
+  increment = (): void => {
     this.setState({ count: this.state.count + 1 });
   };
 
-  decrement = () => {
+  decrement = (): void => {
     this.setState({ count: this.state.count - 1 });
   };
 
-  reset = () => {
+  reset = (): void => {
     this.setState({ count: 0 });
   };
 
-  handleNameChange = (e) => {
+  handleNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
     this.setState({ name: e.target.value });
   };
 
-  componentDidMount() {
+  componentDidMount(): void {
     document.title = `Count: ${this.state.count}`;
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     document.title = `Count: ${this.state.count}`;
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className="counter">
         <p>Hello {this.state.name || 'Anonymous'}!</p>

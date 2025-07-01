@@ -2,7 +2,7 @@ import React from 'react';
 import ClassCounter from './ClassCounter';
 import HookCounter from './HookCounter';
 
-function CounterDemo() {
+function CounterDemo(): JSX.Element {
   return (
     <>
       <div className="demo-section">

@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks';
 
-function RTKTodoStats() {
-  const todos = useSelector(state => state.rtkTodos.items);
+function RTKTodoStats(): JSX.Element {
+  const todos = useAppSelector(state => state.rtkTodos.items);
   const totalTodos = todos.length;
   const completedTodos = todos.filter(todo => todo.completed).length;
   const pendingTodos = totalTodos - completedTodos;

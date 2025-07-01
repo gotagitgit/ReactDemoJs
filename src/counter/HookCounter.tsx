@@ -1,16 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 
-function HookCounter() {
-  const [count, setCount] = useState(0);
-  const [name, setName] = useState('');
+function HookCounter(): JSX.Element {
+  const [count, setCount] = useState<number>(0);
+  const [name, setName] = useState<string>('');
 
-  const increment = () => setCount(count + 1);
-  const decrement = () => setCount(count - 1);
-  const reset = () => setCount(0);
+  const increment = (): void => setCount(count + 1);
+  const decrement = (): void => setCount(count - 1);
+  const reset = (): void => setCount(0);
 
   useEffect(() => {
     document.title = `Count: ${count}`;
   }, [count]);
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setName(e.target.value);
+  };
 
   return (
     <div className="counter">
@@ -19,7 +23,7 @@ function HookCounter() {
         type="text" 
         placeholder="Enter your name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleNameChange}
       />
       <h3>Count: {count}</h3>
       <div className="buttons">

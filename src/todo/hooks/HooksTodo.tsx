@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { Todo } from '../../types';
 
-function HooksTodo() {
-  const [todos, setTodos] = useState([
+function HooksTodo(): JSX.Element {
+  const [todos, setTodos] = useState<Todo[]>([
     { id: 1, text: 'Learn React Hooks', completed: false },
     { id: 2, text: 'Compare with Redux', completed: false }
   ]);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState<string>('');
 
-  const addTodo = () => {
+  const addTodo = (): void => {
     if (inputValue.trim()) {
       setTodos([...todos, {
         id: Date.now(),
@@ -18,14 +19,24 @@ function HooksTodo() {
     }
   };
 
-  const toggleTodo = (id) => {
+  const toggleTodo = (id: number): void => {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (id: number): void => {
     setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(e.target.value);
+  };
+
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      addTodo();
+    }
   };
 
   return (
@@ -34,9 +45,9 @@ function HooksTodo() {
         <input
           type="text"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={handleInputChange}
           placeholder="Add a todo..."
-          onKeyPress={(e) => e.key === 'Enter' && addTodo()}
+          onKeyPress={handleKeyPress}
         />
         <button onClick={addTodo}>Add</button>
       </div>

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks';
 import RTKTodoItem from './RTKTodoItem';
 
-function RTKTodoList() {
-  const todos = useSelector(state => state.rtkTodos.items);
+function RTKTodoList(): JSX.Element {
+  const todos = useAppSelector(state => state.rtkTodos.items);
 
   return (
     <div className="todo-list">
