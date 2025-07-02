@@ -3,7 +3,7 @@ import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import TodoStats from './TodoStats';
 
-function ReduxTodo() {
+function ReduxTodo(): JSX.Element {
   return (
     <div className="todo-app">
       <div className="multi-component-demo">

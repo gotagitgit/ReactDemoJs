@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTodo } from '../../store';
 
-function TodoInput() {
+function TodoInput(): JSX.Element {
   const dispatch = useDispatch();
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState<string>('');
 
-  const handleAddTodo = () => {
+  const handleAddTodo = (): void => {
     if (inputValue.trim()) {
       dispatch(addTodo(inputValue));
       setInputValue('');

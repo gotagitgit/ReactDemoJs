@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { RootState, Todo } from '../../types';
 import TodoItem from './TodoItem';
 
-function TodoList() {
-  const todos = useSelector(state => state.todos.items);
+function TodoList(): JSX.Element {
+  const todos = useSelector((state: RootState) => state.todos.items);
 
   return (
     <div className="todo-list">
