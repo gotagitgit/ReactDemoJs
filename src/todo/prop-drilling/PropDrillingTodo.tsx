@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { Todo } from '../../types';
 import InputContainer from './InputContainer';
 import StatsContainer from './StatsContainer';
 import ListContainer from './ListContainer';
 
-function PropDrillingTodo() {
-  const [todos, setTodos] = useState([
+function PropDrillingTodo(): JSX.Element {
+  const [todos, setTodos] = useState<Todo[]>([
     { id: 1, text: 'Learn Prop Drilling', completed: false },
     { id: 2, text: 'See All The Props', completed: false }
   ]);
 
-  const addTodo = (text) => {
+  const addTodo = (text: string): void => {
     setTodos([...todos, {
       id: Date.now(),
       text,
@@ -17,13 +18,13 @@ function PropDrillingTodo() {
     }]);
   };
 
-  const toggleTodo = (id) => {
+  const toggleTodo = (id: number): void => {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ));
   };
 
-  const deleteTodo = (id) => {
+  const deleteTodo = (id: number): void => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 

@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 
-function InputWrapper({ onAddTodo }) {
-  const [inputValue, setInputValue] = useState('');
+interface InputWrapperProps {
+  onAddTodo: (text: string) => void;
+}
 
-  const handleAdd = () => {
+function InputWrapper({ onAddTodo }: InputWrapperProps): JSX.Element {
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const handleAdd = (): void => {
     if (inputValue.trim()) {
       onAddTodo(inputValue);
       setInputValue('');

@@ -1,6 +1,13 @@
 import React from 'react';
+import { Todo } from '../../types';
 
-function ItemWrapper({ todo, onToggle, onDelete }) {
+interface ItemWrapperProps {
+  todo: Todo;
+  onToggle: (id: number) => void;
+  onDelete: (id: number) => void;
+}
+
+function ItemWrapper({ todo, onToggle, onDelete }: ItemWrapperProps): JSX.Element {
   return (
     <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
       <input
